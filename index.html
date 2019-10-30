@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+	<div id="successful">
+		<h3 style="text-align: center;margin-top: 80px;margin-bottom: 40px;">注册成功，快去登录吧!</h3>
+		<button id="btn" @click="close" >取消</button>
+		<button @click="login" id="btn">登录</button>
+	</div>
+	<div class ="now_login">我已注册，现在就<button class="btd_login" @click="login">登录</button></div>
+	<div id="app1">
+		<label>用户名</label><input type="text" placeholder="请设置用户名"  v-model="userInfo.user" class="input" @blur="a"><br>
+		<span class="tiShi">{{ tiShi.tishi1 }}</span><br>
+		<label>设置密码</label><input type="password" placeholder="请设置登录密码" v-model="userInfo.password1"class="input" @blur="b"><br>
+		<span class="tiShi">{{ tiShi.tishi2 }}</span><br>
+		<label>确认密码</label><input type="password" v-model="userInfo.password2"class="input" @blur="c"><br>
+		<span class="tiShi">{{ tiShi.tishi3}}</span><br>
+		<label>真实姓名</label><input type="text" v-model="userInfo.name"class="input" @blur="d"><br>
+		<span class="tiShi">{{ tiShi.tishi4}}</span><br>
+		<label>手机号</label><input type="text" placeholder="请输入手机号码"  v-model="userInfo.num"class="input" @blur="e"><br>
+		<span class="tiShi">{{ tiShi.tishi5}}</span><br>
+		<label>家庭住址</label><textarea rows="5" cols="26"placeholder="请输入您的家庭住址" v-model="userInfo.address" @blur="f"></textarea><br>
+		<span class="tiShi">{{ tiShi.tishi6}}</span><br>
+		<div class="checkbox"><input type="checkbox" style="margin-right: 10px;" v-model="userInfo.checkbox">阅读并接受<a href="" >《xxx用户协议》</a></div>
+		<button id="btd" @click="flag" :disabled="btn">立即注册</button>
+	</div>
+</div>
+
+<style type="text/css">
+	*{margin: 0px;padding: 0px;}
+	a{color: black;text-decoration: none;}
+	body{font-family:  "宋体";background: url(images/2.jpg) no-repeat;background-size: 100%;color: black;}
+	.now_login{font-size: 14px;float: right;}
+	.btd_login{height: 38px;width: 50px;border: 1px solid silver;border-radius: 4px;font-size: 16px;cursor: pointer;margin-left: 10px;}
+	#app1{width: 300px;margin:100px auto;}
+	label{display: inline-block;width:70px;height: 38px;text-align: center;}
+	.tiShi{font-size: 12px;color:red;margin:0 0 10px 70px;}
+	.input{width: 200px;height: 38px;border-radius: 4px;}
+	textarea{resize: none;border-radius: 4px;}
+	.checkbox{font-size: 14px;margin-left: 20px;}
+	#btd{width: 270px;height: 38px;border-radius: 5px;background:#5B8020;border: 1px solid  silver;color: white;font-size: 18px;;cursor: pointer;margin-top: 10px;}
+	#successful{width: 300px;height: 200px;border: 1px solid silver;position: fixed;left: 50%;bottom: 50%;background:#D8D8D8;display: none;}
+	#btn{width: 50px;height: 30px;display: inline-block;float: right;margin-right: 15px;}
+</style>
+
+<script> 
+	var vm=new Vue({
+		el:'#app',
+		data:{
+			isReturn: false,
+			btn:false,
+			tiShi:{
+				tiShi1:'',
+				tishi2:'',
+				tishi3:'',
+				tishi4:'',
+				tishi5:'',
+				tishi6:'',
+			},
+			userInfo:{
+				user:'',
+				password1:'',
+				password2:'',
+				num:'',
+				name:'',
+				address:'',
+				checkbox:true,
+			},
+			userArr:[]
+		},
+		methods:{
+				//用户名
+			a(){
+				this.tiShi.tishi1 = '';
+				this.isReturn = true;
+				var a=/^[a-z]+$/;//小写字母组成
+				if (!this.userInfo.user) this.tiShi.tishi1='用户名不能为空';
+				else if(!a.test(this.userInfo.user)){
+						this.isReturn = true;
+						this.tiShi.tishi1="由小写字母组成"
+					}
+			},
+			//密码
+			b (){
+				this.tiShi.tishi2 = '';
+				this.isReturn = true;
+				var p=/[a-zA-Z]\w[z0-9]/;	
+				if (!this.userInfo.password1) {
+					this.isReturn = true;
+					this.tiShi.tishi2='密码不能为空';
+				}
+				else if(!p.test(this.userInfo.password1)){
+						this.isReturn = true;
+						this.tiShi.tishi2="由字母+数字组成，字母开头"
+					}
+				},
+				//第二遍密码
+				c(){
+					this.tiShi.tishi3 = '';
+					this.isReturn = true;
+					var p=/[a-zA-Z]\w[z0-9]/;
+					if (!this.userInfo.password2) {
+					this.isReturn = true;
+					this.tiShi.tishi3='密码不能为空';
+				}
+				else if(!p.test(this.userInfo.password2)){
+					this.isReturn = true;
+					this.tiShi.tishi3="由字母+数字组成，以字母开头"
+					}
+				if(this.userInfo.password1 != this.userInfo.password2){
+					this.isReturn = true;
+					this.tiShi.tishi3='两次密码不一致';
+				}
+				},
+				//真实姓名
+				d(){
+					this.tiShi.tishi4 = '';
+					this.isReturn = true;
+					if (!this.userInfo.name)this.tiShi.tishi4='姓名不能为空';this.isReturn = true;
+				},
+				//手机号
+				e(){
+					this.tiShi.tishi5 = '';
+					this.isReturn = true;
+					var n=/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/
+				if (!this.userInfo.num)
+					{
+						this.tiShi.tishi5='手机号不能为空';	
+						this.isReturn = true;
+					}			
+				else if (!n.test(this.userInfo.num)) {this.tiShi.tishi5='手机号码格式不正确';this.isReturn = true;}
+				},
+				//家庭住址
+				f(){
+				this.tiShi.tishi6 = '';
+				this.isReturn = true;
+					if (!this.userInfo.address) {this.tiShi.tishi6='请输入您的家庭住址';this.isReturn = true;}
+				},
+			flag (){
+				//alert(1)
+				this.tiShi.tishi1 = '';
+				this.tiShi.tishi2 = '';
+				this.tiShi.tishi3 = '';
+				this.tiShi.tishi4 = '';
+				this.tiShi.tishi5 = '';
+				this.tiShi.tishi6 = '';
+				this.isReturn = false;
+				//用户名
+				var a=/^[a-z]+$/;//小写字母组成
+				if (!this.userInfo.user) 
+					{
+						this.tiShi.tishi1='用户名不能为空';
+						this.isReturn = true;
+					}
+				else if(!a.test(this.userInfo.user)){
+						this.isReturn = true;
+						this.tiShi.tishi1="由小写字母组成"
+					}
+				if (window.localStorage.userArr) {
+					var array=JSON.parse(window.localStorage.userArr);
+				}else{array=[]}
+				//遍历数组进行匹配
+				for (var i = 0; i < array.length; i++) {
+					//判断是否有相同账号
+					console.log(array)
+					/*alert(array[i].username)*/
+					if (this.userInfo.user==array[i].username) {
+						alert('该账号已存在');
+						/*this.tiShi.tiShi1='该账号已存在';*/
+						return;
+					}
+				}
+				
+				//字母开头 ，由字母+数字组成
+				var p=/[a-zA-Z]\w[z0-9]/;	
+				if (!this.userInfo.password1) {
+					this.isReturn = true;
+					this.tiShi.tishi2='密码不能为空';
+				}
+				else if(!p.test(this.userInfo.password1)){
+						this.isReturn = true;
+						this.tiShi.tishi2="由字母+数字组成，字母开头"
+					}
+				//确认密码
+				if (!this.userInfo.password2) {
+					this.isReturn = true;
+					this.tiShi.tishi3='密码不能为空';
+				}
+				else if(!p.test(this.userInfo.password2)){
+						this.isReturn = true;
+						this.tiShi.tishi3="由字母+数字组成，以字母开头"
+					}
+				if(this.userInfo.password1 != this.userInfo.password2){
+					this.isReturn = true;
+					this.tiShi.tishi3='两次密码不一致';
+				}
+				//姓名
+				if (!this.userInfo.name)this.tiShi.tishi4='姓名不能为空';this.isReturn = true;
+				//手机号
+				var n=/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/
+				if (!this.userInfo.num)
+					{
+						this.tiShi.tishi5='手机号不能为空';	
+						this.isReturn = true;
+					}			
+				else if (!n.test(this.userInfo.num)) {this.tiShi.tishi5='手机号码格式不正确';this.isReturn = true;}
+				//家庭住址
+				if (!this.userInfo.address) {this.tiShi.tishi6='请输入您的家庭住址';this.isReturn = true;}
+				//同意协议
+				if (this.userInfo.checkbox!=true) {this.btn=false;alert('是否同意该协议');this.isReturn = true;return}
+				 //如果有这些提示就return
+				 if (this.tiShi.tishi || this.tiShi.tishi2 ||this.tiShi.tishi3 ||this.tiShi.tishi4||this.tiShi.tishi5 ||this.tiShi.tishi6 ) return;
+				//if (this.isReturn) return;
+				var box=document.getElementById("successful");
+				box.style.display='block';
+				//创建对象
+				var obj = {username:this.userInfo.user,password:this.userInfo.password1,number:this.userInfo.num,name:this.userInfo.name,address:this.userInfo.address,}
+				
+				array.push(obj);
+				window.localStorage.userArr=JSON.stringify(array);//把内容转换成字符串形式
+				/*userInfo =JSON.stringify(window.localStorage.userArr)*/
+				localStorage.setItem('userArr',window.localStorage.userArr);
+					// window.location.href='../登录/登录页面.html';
+				},
+				login(){
+					window.location.href='../登录/登录页面.html';
+				},
+				close(){
+					var box=document.getElementById("successful");
+					box.style.display="none";
+				}
+ 
+			}
+   })
+</script>
+
+
+</body>
+</html>
