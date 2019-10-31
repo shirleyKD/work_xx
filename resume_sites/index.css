@@ -1,0 +1,230 @@
+*{
+    padding: 0px;
+    margin: 0px;
+ }
+ body{
+ width: 100%;
+ height: 100%;
+ background-image: url(./img/bgi.jpg);
+ background-repeat: no-repeat;
+ background-attachment: fixed;
+ font-family: "PingFang SC", Quicksand, sans-serif, 微软雅黑, Verdana, Arial, SimSun;
+ color: white;
+}
+.container{}
+.container .p_message {
+    /* float: left; */
+    position:fixed;
+    background-color:#D14B4A;
+    width: 25%;
+    height: 500px;
+    margin-top: 40px;
+    margin-left: 45px;
+}
+.container .p_message #touxiang{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    /* display: flex; */
+    /* justify-content: center; */
+    margin: 50px 0px 0px 70px;
+    /* background-color: blue; */
+}
+.container .p_message h3{
+    margin-top: 40px;
+    margin-left:130px;
+}
+.container .p_message p{
+    margin-top: 20px;
+    margin-left: 100px; 
+}
+.contact{
+    /* width: 100%; */
+    /* height: 50px; */
+    margin-top: 60px;
+    /* background-color: royalblue; */
+    /* display: flex;
+    justify-content: center; */
+    
+}
+.contact img{
+    margin-left: 18px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 6px solid #eeeeee;
+    
+}
+.contact a{
+    display: inline-block;
+ 
+}
+.section{
+    width: 60%;
+    height: 100%;
+    margin: 40px 20px 0px 400px;
+    /* background-color: red; */
+    float: left;
+    /* padding: 20px 20px 0px 30px; */
+}
+.nav{
+    /* float:left; */
+    position:fixed;
+    width: 8%;
+    right: 12px;
+    margin: 40px 10px 0px 0px;
+    /* background-color:blue; */
+}
+.nav ul li{
+    list-style-type: none;
+    /* background-color:green; */
+    height: 50px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+.nav ul li img{
+    width: 50px;
+    height: 50px; 
+}
+.nav ul li a{
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    /* padding: 2px 0px 0px 8px; */
+    text-align: center;
+}
+.nav ul li a:hover{
+    background-color: white;
+}
+h3{
+    font-size: 1.6em;
+}
+.section p,h3{
+    
+    margin-top: 10px;
+}
+.section .person_message div{
+    width: 42%;
+    display: inline-block;
+    /* background-color: red; */
+    margin: 20px 0px 0px 0px;
+}
+.section .person_message li{
+    list-style-type:none;
+    margin-top:10px;
+}
+.person_message div ul h4{
+    margin: 0px 0px 20px 0px;
+    color: #BCBCBC;
+    font-size: 1.2em;
+
+    /* background-color: blue; */
+}
+.quan{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 5px;
+    border: 1px solid #D14B4A;
+}
+#quan{
+    background-color: #D14B4A;
+}
+hr{
+    margin: 20px 10px 0px 0px;
+    color: black;
+}
+/* .person_message1{
+    width: 100%;
+    background-color: blue;
+} */
+#left{
+    
+    /* float: left; */
+    background-color: #373737;
+}
+#right{
+    /* float: right; */
+    display: inline-block;
+    background-color: #373737;
+}
+.education{
+    clear: both;
+    /* background-color: #373737; */
+}
+.person_message,.education,.job,.skill,.project,.contactme{
+    width: 94%;
+    /* height: line-height; */
+    /* width: 100%; */
+    background-color: #373737;
+    margin-bottom:20px ;
+    /* margin: 0px 0px 0px 0px; */
+    /* background-color: red; */
+    /* float: left; */
+    padding: 20px 20px 20px 30px;
+}
+.project .myblog{
+    /* float: left; */
+    width: 48%;
+    background-color: #D14B4A;
+    height: 500px;
+    display: inline-block;
+    margin-top: 20px;
+    
+}
+.project .eshop{
+    /* float:right;  */
+    width: 48%;
+    height: 500px;
+    display: inline-block;
+    background-color: #D14B4A;
+    margin: 20px 0px 0px 20px;
+}
+li{
+    list-style-type: none;
+    margin: 10px 0px 10px 10px;
+}
+.contactme li{
+    text-align: center;
+    font-size: 20px;
+}
+.contactme .contact{
+    display: flex;
+    justify-content: center;
+}
+footer{
+    height: 100px;
+    width:100% ;
+    float: left;
+    text-align: center;
+    margin: 40px 0px 0px 0px;
+}
+footer span{
+    display: block;
+    margin-top: 10px;
+}
+.contact .csdn:hover::after{
+    /* content: url(./img/csdn.jpg); */
+    content: '博客';
+    width: 50px;
+    height: 20px;
+    border:5px solid black;
+    background-color: white;
+    color: #eeeeee;
+    position: absolute;
+    top:100px;
+    left: 10px;
+    z-index: 2;
+    /*   width:120px;
+      height:120px;
+      border:5px solid white; */
+    /*   background: url(图片地址) top center; */
+    /*   background-size:100% auto;
+      position:absolute;
+      top:50px;
+      left:0;
+      z-index:99999; */
+    
+    }
